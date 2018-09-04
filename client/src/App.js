@@ -12,13 +12,28 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  // postData(`http://example.com/answer`, {answer: 42})
+  // .then(data => console.log(JSON.stringify(data))) // JSON-string from `response.json()` call
+  // .catch(error => console.error(error));
+
+
+  getData = (url = "") => {
+    return fetch(url, {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            mode: "no-cors",
+        }
+    })
+  }
+
   callApi = async () => {
-    const response = await fetch('/api/dependencies');
-    const body = await response.json();
 
-    if (response.status !== 200) throw Error(body.message);
+    const response = await this.getData('htpp://localhost:5000/api/1');
+    //const body = await response.json();
 
-    return body;
+    if (response.status !== 200) throw Error(response.message);
+
+    return response;
   };
 
   render() {

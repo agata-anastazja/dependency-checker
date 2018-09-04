@@ -1,14 +1,12 @@
 const express = require('express');
-const path = require('path');
-const getDependencies = require('./src/get_dependencies');
+const routes = require('./routes/index');
+const cors = require('cors')
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-// API calls
-app.get('/api/dependencies',
-  getDependencies
-);
-
+app.use(cors());
+app.options('*', cors());
+app.use('/', routes);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
