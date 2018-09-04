@@ -4,13 +4,15 @@
   "scripts": {
     "client": "cd client && npm start",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "test": "jest tests/** --env=jsdom"
   },
   "dependencies": {
     "express": "^4.16.2"
   },
   "devDependencies": {
     "concurrently": "^3.6.1",
+    "jest": "^23.5.0",
     "nodemon": "^1.18.4"
   }
 }
