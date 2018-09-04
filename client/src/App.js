@@ -18,8 +18,6 @@ class App extends Component {
 
     const body = await response.json();
     if (response.status !== 200) throw Error(response.message);
-    console.log(body["data"])
-
     return JSON.stringify(body["data"]);
   };
 
