@@ -3,7 +3,7 @@ import DependencyTree from './DependencyTree.js'
 
 class DependencyTreeContainer extends Component {
   state = {
-    response: ''
+    response: {}
   };
 
   componentDidMount() {
@@ -18,13 +18,12 @@ class DependencyTreeContainer extends Component {
     const response = await fetch(url);
     const body = await response.json();
     if (response.status !== 200) throw Error(response.message);
-    return JSON.stringify(body["data"]);
+    return body["data"];
   };
 
   render() {
     return (
       <div>
-        <p>{this.state.response}</p>
         <DependencyTree data={this.state.response} />
       </div>
     );
