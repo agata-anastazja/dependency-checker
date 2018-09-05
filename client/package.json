@@ -56,7 +56,7 @@
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js",
-      "<rootDir>/src/tests/setupJest.js"
+      "<rootDir>/src/tests/testSetup.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
@@ -94,6 +94,8 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.4.0",
     "jest-fetch-mock": "^1.6.5"
   }
 }

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
 
-
-class App extends Component {
+class DependencyTree extends Component {
   state = {
     response: ''
   };
@@ -13,8 +11,9 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  callApi = async () => {
-    const response = await fetch('http://localhost:5000/api/1');
+  callApi = async (package_name, version) => {
+    const url = 'http://localhost:5000/api/' + package_name + "/" + version
+    const response = await fetch(url);
     const body = await response.json();
     if (response.status !== 200) throw Error(response.message);
     return JSON.stringify(body["data"]);
@@ -22,11 +21,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <p className="App-intro">{this.state.response}</p>
+      <div>
+        <p>{this.state.response}</p>
       </div>
     );
   }
 }
 
-export default App;
+export default DependencyTree;
