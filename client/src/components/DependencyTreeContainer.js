@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DependencyTree from './DependencyTree.js'
 
 class DependencyTreeContainer extends Component {
   state = {
@@ -12,7 +13,8 @@ class DependencyTreeContainer extends Component {
   }
 
   callApi = async (package_name, version) => {
-    const url = 'http://localhost:5000/api/' + package_name + "/" + version
+    // const url = 'http://localhost:5000/api/' + package_name + "/" + version
+    const url = 'http://localhost:5000/api/1'
     const response = await fetch(url);
     const body = await response.json();
     if (response.status !== 200) throw Error(response.message);
@@ -23,6 +25,7 @@ class DependencyTreeContainer extends Component {
     return (
       <div>
         <p>{this.state.response}</p>
+        <DependencyTree data={this.state.response} />
       </div>
     );
   }

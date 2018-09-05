@@ -17,5 +17,6 @@ build
 .env.production.local
 package-lock.json
 ./client/package-lock.json
+questions.md
 
 npm-debug.log*
