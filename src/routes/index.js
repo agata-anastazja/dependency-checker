@@ -5,8 +5,8 @@ const fetch = require("isomorphic-fetch")
 const app = express()
 router.all('*', cors());
 
-const callApi = async (package_name = "express", version = "latest") => {
-  const url = "https://registry.npmjs.org/" + package_name + "/" + version
+const callApi = async (package_name = "express") => {
+  const url = "https://registry.npmjs.org/" + package_name + "/latest"
   var response = "";
   try {
     const reqBody = await fetchData(url)

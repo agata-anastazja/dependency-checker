@@ -1,29 +1,42 @@
 import React, { Component } from 'react';
+import TreeView from 'react-treeview';
 
 class DependencyTree extends Component {
   constructor(props) {
-    super(props);
-    var data = props.data
-    var dependencies = Object.keys(data)
+    super();
+    const package_names = Object.keys(props.data)
     this.state = {
-      collapsedDependencies: dependencies.map(() => false)
+      collapsedDependencies: package_names.map(() => false)
     };
   }
 
-  createDependency(name, version) {
-    return <span key={name}> {name}</span>;
-  }
-
-  createDependencies(data) {
-    return Object.keys(data).map((key) => {
-      return this.createDependency(key, data[key])
-    });
+  handleClick = (i) => () => {
+    let [...collapsedDependencies] = this.state.collapsedDependencies;
+    collapsedDependencies[i] = !collapsedDependencies[i];
+    this.setState({collapsedDependencies});
   }
 
   render() {
-      return (
+    const collapsedDependencies = this.state.collapsedDependencies;
+    const data = this.props.data;
+    const dataArray = Object.entries(data)
+    return (
         <div >
-          {this.createDependencies(this.props.data)}
+        {dataArray.map((node, i) => {
+         const label =
+           <span className="node" onClick={this.handleClick(i)}>
+            {node[0]}
+           </span>;
+           return (
+             <TreeView
+               key={i}
+               nodeLabel={label}
+               collapsed={collapsedDependencies[i]}
+               onClick={this.handleClick(i)}>
+                <div>{node[1]}</div>
+             </TreeView>
+           );
+         })}
         </div>
       );
     }

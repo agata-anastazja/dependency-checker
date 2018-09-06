@@ -5,7 +5,7 @@ class DependencyTreeContainer extends Component {
   state = {
     response: {}
   };
-
+  //
   componentDidMount() {
     this.callApi(this.props.package_name, this.props.version)
       .then(res => this.setState({ response: res }))
@@ -14,7 +14,7 @@ class DependencyTreeContainer extends Component {
 
   callApi = async (package_name, version) => {
     // const url = 'http://localhost:5000/api/' + package_name + "/" + version
-    const url = 'http://localhost:5000/api/1'
+    const url = 'http://localhost:5000/api/express'
     const response = await fetch(url);
     const body = await response.json();
     if (response.status !== 200) throw Error(response.message);
