@@ -1,6 +1,12 @@
 # Dependency checker
 
-Simple app that helps you read through your dependencies
+Simple app that, given a name of an npm published package, returns the
+set of  first-order dependencies for said package. It presents the dependencies in a tree view.
+It accounts for asynchronous fetching of dependencies and  caches relevant data so that repeated requests resolve with minimum latency.
+
+What makes a good web service? API, architecture, data storage, low latency,
+scalability, monitoring
+
 
 ### Running the app
 
