@@ -6,7 +6,7 @@ class DependencyTree extends Component {
     super();
     const package_names = Object.keys(props.data)
     this.state = {
-      collapsedDependencies: package_names.map(() => false)
+      collapsedDependencies: package_names.map(() => true)
     };
   }
 
@@ -24,9 +24,9 @@ class DependencyTree extends Component {
         <div >
         {dataArray.map((node, i) => {
          const label =
-           <span className="node" onClick={this.handleClick(i)}>
+           <label className="node" onClick={this.handleClick(i)}>
             {node[0]}
-           </span>;
+           </label>;
            return (
              <TreeView
                key={i}

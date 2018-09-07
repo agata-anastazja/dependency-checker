@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import DependencyTree from './DependencyTree.js'
 
 class DependencyTreeContainer extends Component {
-  state = {
-    response: {}
-  };
-  //
+  state = {};
+  
   componentDidMount() {
     this.callApi(this.props.package_name, this.props.version)
       .then(res => this.setState({ response: res }))
@@ -24,7 +22,11 @@ class DependencyTreeContainer extends Component {
   render() {
     return (
       <div>
-        <DependencyTree data={this.state.response} />
+        {
+          (this.state.response) ?
+             <DependencyTree data={this.state.response} />
+           : <div>loading</div>
+        }
       </div>
     );
   }
