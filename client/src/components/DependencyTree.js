@@ -21,7 +21,7 @@ class DependencyTree extends Component {
     const data = this.props.data;
     const dataArray = Object.entries(data)
     return (
-        <div >
+      <div >
         {dataArray.map((node, i) => {
          const label =
            <label className="node" onClick={this.handleClick(i)}>

@@ -8,6 +8,6 @@ describe('DependencyForm', () => {
     var textbox = wrapper.find('input').first();
     textbox.simulate('change', {target: {value: "klopsik"}})
     textbox = wrapper.find('input').first();
-    expect(textbox.props().value).toBe("klopsik")
+    expect(textbox.props().value).toBe("klopsik");
   });
 });

@@ -12,16 +12,17 @@ class DependencyForm extends Component {
 
   handleSubmit = (event) =>  {
     event.preventDefault();
+    this.props.onSubmit(this.state.value)
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Name:
+          Dependency:
           <input name="search" type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <button type="submit" value="Submit">Submit</button>
       </form>
     );
   };
