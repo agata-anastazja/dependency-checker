@@ -7,8 +7,7 @@ const getPackageDependencies = require('../package_dependencies').getPackageDepe
 
 router.get('/api/:name', async function(req, res, next){
   const name = req.params.name
-  const picked = await getPackageDependencies()
-
+  const picked = await getPackageDependencies(name)
   res.status(200).send({
       data: picked
   });

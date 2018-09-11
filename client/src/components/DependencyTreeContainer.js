@@ -16,9 +16,7 @@ class DependencyTreeContainer extends Component {
   }
 
   callApi = async (package_name) => {
-    console.log("package_name in dependency tree 2", package_name)
     const url = 'http://localhost:5000/api/' + package_name
-    console.log("attempt fetch")
     const response = await fetch(url);
     const body = await response.json();
     if (response.status !== 200) throw Error(response.message);
@@ -26,8 +24,6 @@ class DependencyTreeContainer extends Component {
   };
 
   render() {
-    console.log("package_name in dependency tree 1", this.props.packageName)
-    console.log("response", this.state.response)
     return (
       <div>
         {

@@ -1,6 +1,6 @@
 const fetchData = require("./registry_api").fetchData
 
-const getPackageDependencies = async (package_name = "express") => {
+const getPackageDependencies = async (package_name) => {
   const url = "https://registry.npmjs.org/" + package_name + "/latest"
   try {
     const reqBody = await fetchData(url)
