@@ -8,12 +8,9 @@ class DependencyTreeContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("prevProps", prevProps)
-    
-    console.log("current props", this.props.package_name)
     if (this.props.packageName !== prevProps.packageName){
       this.callApi(this.props.packageName, this.props.version)
-      .then(res => this.setState({ response: res }))
+      .then(async res => await this.setState({ response: res }))
       .catch(err => console.log(err));
     }
   }
@@ -34,7 +31,7 @@ class DependencyTreeContainer extends Component {
     return (
       <div>
         {
-          (this.props.packageName !== undefined && this.props.packageName !== "") ?
+          (this.state.response !== undefined) ?
              <DependencyTree data={this.state.response} />
            : <div>loading</div>
         }
