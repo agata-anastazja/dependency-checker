@@ -5,7 +5,7 @@ const getPackageDependencies = async (registryApi, package_name) => {
     return reqBody["dependencies"];
   }
   catch(error) {
-    throw(error);
+    console.error(error);
   };
 };
 

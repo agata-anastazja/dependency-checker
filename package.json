@@ -54,6 +54,9 @@
     "fetch": "^1.1.0",
     "jest": "^23.5.0",
     "nodemon": "^1.18.4",
+    "proxyquire": "^2.1.0",
+    "sinon": "^6.2.0",
+    "supertest": "^3.3.0",
     "url-search-params": "^1.0.2"
   }
 }
