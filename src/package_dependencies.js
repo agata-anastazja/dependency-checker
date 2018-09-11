@@ -1,9 +1,7 @@
-const fetchData = require("./registry_api").fetchData
-
-const getPackageDependencies = async (package_name) => {
+const getPackageDependencies = async (package_name, registryApi) => {
   const url = "https://registry.npmjs.org/" + package_name + "/latest"
   try {
-    const reqBody = await fetchData(url)
+    const reqBody = await registryApi(url)
     return reqBody["dependencies"];
   }
   catch(error) {

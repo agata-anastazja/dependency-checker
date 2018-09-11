@@ -1,10 +1,6 @@
 const getPackageDependencies = require('../src/package_dependencies').getPackageDependencies;
-
-describe('asyncFetch', () => {
-
-  beforeEach(() => {
-    fetch.resetMocks()
-  })
+const fakeRegistryApi = require("./fakes/fakeRegistryApi").fetchData
+describe('Package dependencies', () => {
 
   it('gets dependencies from npm registry', async () => {
     dependencies = { 
@@ -14,11 +10,8 @@ describe('asyncFetch', () => {
     };
     fakeData = { dependencies };
 
-    fetch.mockResponseOnce(JSON.stringify(fakeData))
-
-    const result = await getPackageDependencies("express")
+    const result = await getPackageDependencies("express", fakeRegistryApi)
     expect(result).toEqual(dependencies);
-    expect(fetch).toBeCalledWith("https://registry.npmjs.org/express/latest")
   });
 });
 

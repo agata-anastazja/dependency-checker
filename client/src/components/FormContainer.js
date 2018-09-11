@@ -15,6 +15,7 @@ class FormContainer extends Component {
   }
 
   render() {
+    // if this.state.packageName ==! "" DependencyTreeContainer : <div/>
     return (
       <div>
         <DependencyForm onSubmit={this.handleFormSubmit}/>
