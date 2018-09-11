@@ -7,16 +7,21 @@ class DependencyTreeContainer extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    this.callApi(this.props.packageName, this.props.version)
+  componentDidUpdate(prevProps) {
+    console.log("prevProps", prevProps)
+    
+    console.log("current props", this.props.package_name)
+    if (this.props.packageName !== prevProps.packageName){
+      this.callApi(this.props.packageName, this.props.version)
       .then(res => this.setState({ response: res }))
       .catch(err => console.log(err));
+    }
   }
 
-  callApi = async (package_name, version = 'latest') => {
+  callApi = async (package_name) => {
     console.log("package_name in dependency tree 2", package_name)
-    const url = 'http://localhost:5000/api/' + package_name + '/' + version
-    //const url = 'http://localhost:5000/api/express'
+    const url = 'http://localhost:5000/api/' + package_name
+    console.log("attempt fetch")
     const response = await fetch(url);
     const body = await response.json();
     if (response.status !== 200) throw Error(response.message);
@@ -25,10 +30,11 @@ class DependencyTreeContainer extends Component {
 
   render() {
     console.log("package_name in dependency tree 1", this.props.packageName)
+    console.log("response", this.state.response)
     return (
       <div>
         {
-          (this.props.packageName !== undefined) ?
+          (this.props.packageName !== undefined && this.props.packageName !== "") ?
              <DependencyTree data={this.state.response} />
            : <div>loading</div>
         }

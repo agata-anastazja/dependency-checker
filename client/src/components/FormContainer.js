@@ -6,12 +6,12 @@ class FormContainer extends Component {
   constructor(props) {
     super();
     this.state = {
-      package_name: ""
+      packageName: ""
     };
   }
 
-  handleFormSubmit = async (package_name) => {
-    await this.setState({package_name: package_name});
+  handleFormSubmit = async (packageName) => {
+    await this.setState({packageName: packageName});
   }
 
   render() {
