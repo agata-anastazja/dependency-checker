@@ -10,7 +10,7 @@ class DependencyTreeContainer extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.packageName !== prevProps.packageName){
       this.callApi(this.props.packageName, this.props.version)
-      .then(async res => await this.setState({ response: res }))
+      .then( res =>  this.setState({ response: res }))
       .catch(err => console.log(err));
     }
   }
