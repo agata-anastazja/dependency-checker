@@ -1,6 +1,6 @@
 const express = require('express');
-const getPackageDependencies = require('../package_dependencies').getPackageDependencies
-const registryApi = require("../registry_api").fetchData
+const getDependencies = require('../packageDependencies');
+const registryApi = require("../registryApi").makeApiCall;
 
 getPackageDependenciesRoute = (app) => {
   var route = express.Router();
@@ -10,7 +10,7 @@ getPackageDependenciesRoute = (app) => {
   route.get('/:name', async (req, res) => {
     const name = req.params.name;
 
-    const dependenciesData = await getPackageDependencies(registryApi, name)
+    const dependenciesData = await getDependencies.getPackageDependencies(registryApi, name)
 
     if (dependenciesData == {}) {
       res.status(404).json({

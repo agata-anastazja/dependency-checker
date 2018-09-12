@@ -15,27 +15,24 @@ describe('GET /ping', function () {
     // Get our router module, with a stubbed out users dependency
     // we stub this out so we can control the results returned by
     // the users module to ensure we execute all paths in our code
-    route = proxyquire('../lib/api.js', {
-      './getPackageDependenciesRoute': {
+    route = proxyquire('../../src/routes/getPackageDependenciesRoute.js', {
+      '/api': {
         getPackageDependenciesRoute: getDependenciesStub
       }
     });
 
-    // Bind our application to
     route(app);
-
-    // Get a supertest instance so we can make requests
     request = supertest(app);
   });
 
   it('should respond with a 404 and a null', function (done) {
-    getUserStub.returns(null);
+    getDependenciesStub.returns(null);
 
     request
-      .get('/users/nodejs')
+      .get('/api/expresssss')
       .expect('Content-Type', /json/)
       .expect(404, function (err, res) {
-        expect(res.body).to.deep.equal({
+        expect(res.body).toEqual({
           status: 'not ok',
           data: null
         });
@@ -44,19 +41,19 @@ describe('GET /ping', function () {
   });
 
   it('should respond with 200 and a user object', function (done) {
-    var userData = {
-      username: 'nodejs'
+    var data = {
+      dependencies: {'nodejs': '2.1.2'}
     };
 
-    getUserStub.returns(userData);
+    getDependenciesStub.returns(data);
 
     request
-      .get('/users/nodejs')
+      .get('/api/nodejs')
       .expect('Content-Type', /json/)
       .expect(200, function (err, res) {
-        expect(res.body).to.deep.equal({
+        expect(res.body).toEqual({
           status: 'ok',
-          data: userData
+          data: data
         });
         done();
       });

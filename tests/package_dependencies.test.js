@@ -1,4 +1,4 @@
-const getPackageDependencies = require('../src/package_dependencies').getPackageDependencies;
+const getPackageDependencies = require('../src/packageDependencies').getPackageDependencies;
 const fakeRegistryApi = require("./fakes/fakeRegistryApi").fetchData;
 describe('Package dependencies', () => {
 
