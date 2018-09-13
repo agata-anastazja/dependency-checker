@@ -11,15 +11,17 @@ class FormContainer extends Component {
   }
 
   handleFormSubmit = async (packageName) => {
-    await this.setState({packageName: packageName});
+    await this.setState({packageName});
   }
 
   render() {
-    // if this.state.packageName ==! "" DependencyTreeContainer : <div/>
     return (
       <div>
         <DependencyForm onSubmit={this.handleFormSubmit}/>
-        <DependencyTreeContainer packageName={this.state.packageName}/>
+        
+           <DependencyTreeContainer packageName={this.state.packageName}/>
+        
+        
       </div>
     );
   };

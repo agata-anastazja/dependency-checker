@@ -2,23 +2,26 @@ const express = require('express')
 const router = express.Router()
 const cors = require('cors')
 const app = express()
-const api = require('./api')
 router.all('*', cors());
+const getPackageDependencies = require('../packageDependencies').getPackageDependencies
+const registryApi = require("../registryApi").fetchData
 
-api.use(app);
 
-//
-// const getPackageDependencies = require('../package_dependencies').getPackageDependencies
-// const registryApi = require("../registry_api").fetchData
-//
-//
-// router.get('/api/:name', async function(req, res, next){
-//   const name = req.params.name
-//   const picked = await getPackageDependencies(registryApi, name)
-//
-//   res.status(200).send({
-//       data: picked
-//   });
-// });
+router.get('/api/:name', async function(req, res, next){
+  const name = req.params.name
+  try {
+    const picked = await getPackageDependencies(name, registryApi)
+    res.status(200).send({
+        data: picked
+    });
+  }
+  catch(error) {
+    res.status(404).send({
+      message: "not found"
+    });
+  }    
+});
+
+
 
 module.exports = router
