@@ -25,4 +25,4 @@ npm run dev
 Displaying the main dependencies and not the dev dependencies.
 
 ### Next steps:
-Fetch error handling - display a server fail page
+Fetch error handling - display error message for the user when they input non existing npm package name
