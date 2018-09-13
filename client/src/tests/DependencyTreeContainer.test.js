@@ -24,6 +24,6 @@ describe('DependencyTreeContainer', () => {
 
   it('renders loading until the data gets back', () => {
     const wrapper = shallow(<DependencyTreeContainer />, {disableLifecycleMethods: true});
-    expect(wrapper.find('div>div').first().text()).toBe('loading')
+    expect(wrapper.find('div>div').first().text()).toBe('')
   });
 });

@@ -29,7 +29,7 @@ class DependencyTreeContainer extends Component {
         {
           (this.state.response !== undefined) ?
              <DependencyTree data={this.state.response} />
-           : <div>loading</div>
+           : <div />
         }
       </div>
     );
